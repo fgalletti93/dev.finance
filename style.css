@@ -1,6 +1,7 @@
 /******GLOBAL******/
 :root{
 --dark-green: #2D4A22; 
+--light-green: #3dd705;
 --green: #49AA26; 
 --red: #E92929; 
 --white: #FFFFFF; 
@@ -15,9 +16,25 @@
     box-sizing: border-box;
 }
 
+html{
+    font-size: 93.75%;
+}
+
 body{
     background: var(--bgcolor);
     font-family: 'Poppins', sans-serif;
+}
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container{
@@ -33,6 +50,52 @@ h2{
     font-weight: normal;
 }
 
+/***LINKS & BUTTONS***/
+a{
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover{
+    color: var(--light-green);
+}
+
+button{
+    width: 100%;
+    height: 50px;
+    border: none;
+    color: var(--white);
+    background: var(--green);
+    padding: 0;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+button:hover{
+    background: var(--light-green);
+}
+
+.button.new{
+    display: inline-block;
+    margin-bottom: .8rem;
+}
+
+.button.cancel{
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 00.25rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover{
+    opacity: 1;
+}
+
 /*HEADER*/
 header{
     background: var(--dark-green);
@@ -40,14 +103,9 @@ header{
     text-align: center;
 }
 
-header h1#logo{
-    color: var(--white);
-    font-weight: 100;
-}
-
 /****BALANCE****/
 #balance{
-    margin-top: -7rem;
+    margin-top: -6rem;
 }
 
 #balance h2{
@@ -67,6 +125,12 @@ header h1#logo{
     font-size: 1rem;
 }
 
+.card span{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .card p{
     font-size: 2rem;
     line-height: 3rem;
@@ -78,6 +142,12 @@ header h1#logo{
     color: var(--white);
 }
 /*TABLE*/
+#transaction{
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
 #data-table{
     width: 100%;
     border-spacing: 0 0.5rem;
@@ -110,6 +180,10 @@ table thead tr th:first-child, table tbody tr td:first-child{
     border-radius: 0.25rem 0 0 0.25rem;
 }
 
+table thead tr th:last-child, table tbody tr td:last-child{
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
 td.description{
     color: var(--titles);
 }
@@ -122,6 +196,65 @@ td.expense{
     color: var(--red);
 }
 
+/******MODAL*****/
+.modal-overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal{
+    background: var(--bgcolor);
+    padding: 2.4rem;
+}
+
+/******FORM******/
+#form{
+    max-width: 500px;
+}
+
+#form h2{
+    margin-top: 0;
+}
+
+input{
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.8rem;
+    width: 100%;
+}
+
+.input-group{
+    margin-top: 0.8rem;
+}
+
+.input-group small{
+    opacity: 0.4;
+}
+
+.input-group.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button, .input-group.actions button{
+    width: 48%;
+}
+
 
 /***FOOTER**/
 footer{
@@ -129,4 +262,17 @@ footer{
     padding: 4rem 0 2rem;
     color: var(--titles);
     opacity: 0.6;
+}
+
+/*****RESPONSIVE*****/
+@media(min-width: 800px) {
+    html{
+        font-size: 87.5%;
+    }
+
+    #balance{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
 }
